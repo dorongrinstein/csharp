@@ -13,6 +13,12 @@ static object processSum(SumRequest req)
 
 app.MapPost("/sum", (SumRequest req) => processSum(req));
 
+app.MapGet("/", () =>
+{
+    string host = Environment.GetEnvironmentVariable("CPLN_GLOBAL_ENDPOINT") ?? "localhost:8080";
+    return $"curl --location 'https://{host}/sum' \\\n--header 'Content-Type: application/json' \\\n--data '{{\\"a\\":2, \\"b\\":4}}'";
+});
+
 app.Urls.Clear();
 app.Urls.Add("http://+:8080");
 
