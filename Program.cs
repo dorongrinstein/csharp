@@ -16,7 +16,7 @@ app.MapPost("/sum", (SumRequest req) => processSum(req));
 app.MapGet("/", () =>
 {
     string host = Environment.GetEnvironmentVariable("CPLN_GLOBAL_ENDPOINT") ?? "localhost:8080";
-    return $"curl --location 'https://{host}/sum' " +
+    return $"curl --location '{host}/sum' " +
            "--header 'Content-Type: application/json' " +
            "--data '{\"a\":2, \"b\":4}'";
 });
